@@ -1,0 +1,38 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11">
+      <h4 class="text-center bg-light col-3 mt-4 mb-5">商品詳細</h4>
+      <div class="row">
+        <div class="col-4">
+          <%= attachment_image_tag @item, :image, :fill, 300, 300, fallback: "no_image.jpg", class:"rounded-circle"; %>
+        </div>
+          <div class="col-7 mt-3">
+            <div class="row">
+              <label class="col-3 offset-1">商品名</label>
+              <div class="col-5 offset-1"><%= @item.name %></div>
+            </div>
+            <div class="row">
+              <label class="col-3 offset-1">商品説明</label>
+              <div class="col-5 offset-1"><%= @item.introduction %></div>
+            </div>
+            <div class="row">
+              <label class="col-3 offset-1">ジャンル</label>
+              <div class="col-5 offset-1"><%= @item.genre.name %></div>
+            </div>
+            <div class="row">
+              <label class="col-3 offset-1">税込価格<br>（税込価格）</label>
+              <div class="col-5 offset-1"><%= @price %><span> （</span><%= @tax_price %><span>）円</span></div>
+            </div>
+            <div class="row">
+              <label class="col-3 offset-1">販売ステータス</label>
+              <div class="col-5 offset-1"><%= @item.is_active ? '販売中' : '販売停止中' %></div>
+            </div>
+            <div class="row">
+              <div class="col-5 offset-2"><%= link_to '編集する', edit_admin_item_path(@item.id), class: 'mt-5 btn btn-success btn-primary w-50' %></div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

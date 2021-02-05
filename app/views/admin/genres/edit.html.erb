@@ -1,0 +1,17 @@
+<p id="notice"></p>
+
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11">
+      <h4 class="text-center bg-light col-3 mt-4 mb-5">ジャンル編集</h4>
+        <%= form_with model: @genre, url: {controller: 'genres', action: 'update' }, local:true do |f| %>
+          <div class="row form-group">
+            <label class="col-2 text-center">ジャンル名</label>
+            <div class="col-3"><%= f.text_field :name, class: 'form-control' %></div>
+             <div class="col-3"><%= f.submit '変更を保存', class: 'btn btn-success btn-primary w-50' %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
