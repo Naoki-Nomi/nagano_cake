@@ -1,0 +1,45 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11">
+      <h4 class="text-center bg-light col-4 mt-4 mb-5"><%= @name %>さんの会員詳細</h4>
+
+      <div class="row mb-2">
+        <label class="col-3">会員ID</label>
+        <div class="col-4"><%= @customer.id %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">氏名</label>
+        <div class="col-4"><%= @customer.last_name %><span> </sapn><%= @customer.first_name %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">フリガナ</label>
+        <div class="col-4"><%= @customer.last_name_kana %><span> </sapn><%= @customer.first_name_kana %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">郵便番号</label>
+        <div class="col-4"><%= @customer.postal_code %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">住所</label>
+        <div class="col-4"><%= @customer.address %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">電話番号</label>
+        <div class="col-4"><%= @customer.telephone_number %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">メールアドレス</label>
+        <div class="col-4"><%= @customer.email %></div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-3">会員ステータス</label>
+        <div class="col-4"><%= @customer.is_deleted ? '退会' : '有効' %></div>
+      </div>
+      <div class="row">
+        <div class="offset-3"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: 'btn btn-sm btn-success' %></div>
+        <div class="offset-1"><%= link_to '注文履歴一覧を見る', edit_admin_customer_path(@customer.id), class: 'btn btn-sm btn-primary' %></div>
+      </div>
+    </div>
+  </div>
+</div>

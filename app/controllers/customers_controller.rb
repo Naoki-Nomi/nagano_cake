@@ -20,7 +20,7 @@ class CustomersController < ApplicationController
 
   def quit
     customer = Customer.find(current_customer.id)
-    customer.is_deleted = false
+    customer.update_attributes(is_deleted: true)
     redirect_to customers_mypage_path(current_customer.id)
   end
 
