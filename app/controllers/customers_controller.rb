@@ -15,10 +15,13 @@ class CustomersController < ApplicationController
   end
 
   def confirm
+    @customer = Customer.find(current_customer.id)
   end
 
   def quit
     customer = Customer.find(current_customer.id)
+    customer.is_deleted = false
+    redirect_to customers_mypage_path(current_customer.id)
   end
 
   private
