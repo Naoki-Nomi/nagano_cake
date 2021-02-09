@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted])
   end
 
+  private
+
+  def current_cart
+    current_cart = Customer.find_by(id: session[:customer_id])
+    current_cart = Customer.create unless current_cart
+    session[:customer_id] = current_cart.id
+    current_cart
+  end
+
 end

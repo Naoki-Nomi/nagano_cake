@@ -3,7 +3,6 @@ class AddressesController < ApplicationController
   def index
     @address = Address.new
     @addresses = Address.all
-    p @addresses
   end
 
   def edit
@@ -12,6 +11,7 @@ class AddressesController < ApplicationController
 
   def create
     address = Address.new(address_params)
+    address.customer_id = current_customer.id
     if address.save
       redirect_to addresses_path
     else

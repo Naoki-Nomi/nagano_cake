@@ -10,3 +10,31 @@ Admin.find_or_create_by(id: 1) do |admin|
  admin.email = "example@example.com"
  admin.password = "example"
 end
+
+Genre.create!(
+ [
+  {
+   name: "果物"
+   },
+  {
+   name: "野菜"
+   }
+ ]
+ )
+
+Item.create!(
+ [
+  {
+   name: "りんご",
+   introduction: "りんごです",
+   price: "300",
+   genre_id: 1
+   },
+  {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 2
+   }
+ ]
+ )
