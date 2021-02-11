@@ -23,9 +23,8 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:index, :create, :update]
   delete '/cart_items/:id' => 'cart_items#destroy'
   delete '/cart_items' => 'cart_items#destroy_all'
-  resources :orders, only: [:new, :create, :index, :show]
-  get '/orders/confirm' => 'orders/confirm'
   post '/orders/confirm' => 'orders/confirm'
   get '/orders/complete' => 'orders/complete'
+  resources :orders, only: [:new, :create, :index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

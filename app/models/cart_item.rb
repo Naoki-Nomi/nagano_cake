@@ -11,4 +11,8 @@ class CartItem < ApplicationRecord
     (item.price * amount * 1.08).round(0).to_s(:delimited, delimiter: ',')
   end
 
+  def for_check_price
+    (item.price * amount * 1.08).round(0)
+  end
+
 end

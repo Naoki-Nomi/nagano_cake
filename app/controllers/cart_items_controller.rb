@@ -20,6 +20,7 @@ class CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
+    @customer = current_customer
   end
 
   def update

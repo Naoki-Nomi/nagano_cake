@@ -38,11 +38,7 @@
               <tablebody>
                 <tr>
                   <td>合計金額</td>
-                  <% @sum = 0 %>
-                  <% @cart_items.each do |cart_item| %>
-                  <% @sum += (cart_item.item.price * cart_item.amount) %>
-                  <% end %>
-                  <td><%= (@sum* 1.08).round(0).to_s(:delimited, delimiter: ',') %></td>
+                  <td><%= @customer.check_price %></td>
                 </tr>
               </tablebody>
             </table>
