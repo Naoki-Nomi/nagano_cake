@@ -78,7 +78,6 @@ class OrdersController < ApplicationController
 
           end
 
-        byebug
         end
 
   #あるならば
@@ -94,9 +93,13 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
-    @items = Item.all
-    @order_items = OrderItem.all
+    @orders = Order.all.includes([order_items: :item])
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_items = OrderItem.where(order_id: @order.id)
+    @order_unit_price = @order_items.all.sum(:price)
   end
 
   private

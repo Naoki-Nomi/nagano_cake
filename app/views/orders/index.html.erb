@@ -1,37 +1,38 @@
-        <% @order_items.each do |a| %>
-          <%= a.amount %>
-        <% end %>
-
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <% @orders.each do |order| %>
-        <table class="table">
-          <tablehead class="table-secondary">
-            <tr>
-              <td>注文日</td>
-              <td>配送先</td>
-              <td>注文商品</td>
-              <td>支払金額</td>
-              <td>ステータス</td>
-              <td>注文詳細</td>
-            </tr>
-          </tablehead>
+      <table class="table">
+        <tablehead class="head-light">
+          <tr>
+            <td>注文日</td>
+            <td>配送先</td>
+            <td>注文商品</td>
+            <td>支払金額</td>
+            <td>ステータス</td>
+            <td>注文詳細</td>
+          </tr>
+        </tablehead>
+        <tablebody>
+          <% @orders.each do |order| %>
           <tablebody>
-            <tr>
-              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-              <td><span>〒</sapn><%= order.delivery_postal_code %><br>
+          <tr>
+            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td><span>〒</sapn><%= order.delivery_postal_code %><br>
               <%= order.delivery_address %><br>
               <%= order.delivery_name %>
-              </td>
-              <td></td>
-              <td><%= order.charge.to_s(:delimited, delimiter: ',') %><span>円</span></td>
-              <td></td>
-              <td><%= link_to '表示する', order_path(order.id), class: 'btn btn-primary' %></td>
-            </tr>
+            </td>
+            <td>
+            <% order.order_items.each do |order_item| %>
+              <%= order_item.item.name %>
+            <% end %>
+            </td>
+            <td><%= order.charge.to_s(:delimited, delimiter: ',') %><span>円</span></td>
+            <td></td>
+            <td><%= link_to '表示する', order_path(order.id), class: 'btn btn-primary' %></td>
+          </tr>
           </tablebody>
-        </table>
-      <% end %>
+          <% end %>
+      </table>
     </div>
   </div>
 </div>

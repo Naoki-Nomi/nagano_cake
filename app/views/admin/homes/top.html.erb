@@ -1,1 +1,29 @@
-<h1>トップページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-12">
+      <h4 class="text-center bg-light col-4 mt-4 mb-5">注文履歴一覧</h4>
+      <table class="table">
+        <tablehead>
+          <tr>
+            <td>購入日時</td>
+            <td>購入者</td>
+            <td>注文個数</td>
+            <td>注文ステータス</td>
+          </tr>
+        </tablehead>
+        <% @orders.each do |order| %>
+          <% order_item = OrderItem.where(order_id: order.id) %>
+        <tablebody>
+          <tr>
+            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= order.cusromer.last_name %><%= order.cusromer.first_name %></td>
+            <td><%= order_item.all.sum(:amount) %>></td>
+            <td></td>
+          </tr>
+        </tablebody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
