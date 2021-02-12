@@ -15,9 +15,9 @@
           <% order_item = OrderItem.where(order_id: order.id) %>
         <tablebody>
           <tr>
-            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= order.cusromer.last_name %><%= order.cusromer.first_name %></td>
-            <td><%= order_item.all.sum(:amount) %>></td>
+            <td><%= link_to order.created_at.strftime('%Y/%m/%d'), admin_path(order.id) %></td>
+            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+            <td><%= order_item.all.sum(:amount) %></td>
             <td></td>
           </tr>
         </tablebody>

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     resources :items
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    get '/admin/orders/:id' => 'orders#show'
-    patch '/admin/orders/:id' => 'orders#update'
-    patch '/admin/order_items/:id' => 'order_items#show'
+    get '/orders/:id' => 'orders#show'
+    patch '/orders/:id' => 'orders#update'
+    patch '/order_items/:id' => 'order_items#update'
 
   end
 

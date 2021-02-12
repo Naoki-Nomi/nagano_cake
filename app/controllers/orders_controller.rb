@@ -109,7 +109,7 @@ class OrdersController < ApplicationController
   end
 
   def order_item_params
-    params.permit(:item_id, :item_id, :amount, :price)
+    params.permit(:item_id, :amount, :price)
   end
 
 end

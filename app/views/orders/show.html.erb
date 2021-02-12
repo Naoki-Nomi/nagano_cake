@@ -57,10 +57,10 @@
         <tablebody>
           <% @order_items.each do |order_item| %>
           <tr>
-            <td><%= order_item.item.name  %></td>
+            <td><%= order_item.item.name %></td>
             <td><%= order_item.order_unit_price %></td>
-            <td><%= order_item.amount  %></td>
-            <td><%= order_item.order_price  %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= order_item.order_price%></td>
           </tr>
           <% end %>
         </tablebody>

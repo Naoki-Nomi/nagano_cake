@@ -1,10 +1,16 @@
 class Admin::HomesController < ApplicationController
 
   def top
-    
-    @orders = Order.all
-    @order_unit_price = @order_items.all.sum(:price)
-  end
+    case params[:order_sort]
 
+    when "0"
+      @orders = Order.all
+    when "1"
+      @customer = Customer.find(params[:id])
+      @orders = @customer.orders
+    else
+      @orders = Order.all
+    end
+  end
 
 end

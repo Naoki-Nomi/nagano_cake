@@ -38,7 +38,7 @@
       </div>
       <div class="row">
         <div class="offset-3"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: 'btn btn-sm btn-success' %></div>
-        <div class="offset-1"><%= link_to '注文履歴一覧を見る', edit_admin_customer_path(@customer.id), class: 'btn btn-sm btn-primary' %></div>
+        <div class="offset-1"><%= link_to '注文履歴一覧を見る', admin_root_path(:id => @customer.id, :order_sort => 1), class: 'btn btn-sm btn-primary' %></div>
       </div>
     </div>
   </div>
