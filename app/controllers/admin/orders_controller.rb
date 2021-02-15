@@ -10,7 +10,6 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update(order_params)
     redirect_to admin_path(@order.id)
-    byebug
   end
 
 

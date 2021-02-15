@@ -35,6 +35,37 @@ Item.create!(
    introduction: "バナナです",
    price: "500",
    genre_id: 2
+   },
+  {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 2
+   },
+     {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 1
+   },
+     {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 2
+   },
+     {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 1
+   },
+     {
+   name: "バナナ",
+   introduction: "バナナです",
+   price: "500",
+   genre_id: 1
    }
+
  ]
  )

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   devise_for :admin, controllers: {
   sessions: 'admins/sessions'
 }
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
     get '/orders/:id' => 'orders#show'
     patch '/orders/:id' => 'orders#update'
     patch '/order_items/:id' => 'order_items#update'
-
   end
 
   devise_for :customers

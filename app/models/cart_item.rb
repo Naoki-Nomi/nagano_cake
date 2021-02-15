@@ -3,6 +3,8 @@ class CartItem < ApplicationRecord
   belongs_to :customer, optional: true
   belongs_to :item, optional: true
 
+  validates :amount, numericality: true
+
   def tax_price
     (item.price * 1.08).round(0).to_s(:delimited, delimiter: ',')
   end

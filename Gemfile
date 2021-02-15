@@ -74,3 +74,13 @@ gem 'pry-byebug'
 
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
+gem 'kaminari','~> 1.2.1'
+gem 'bootstrap4-kaminari-views'
+
+gem 'ransack'
+
+gem 'enum_help', '~> 0.0.15'
