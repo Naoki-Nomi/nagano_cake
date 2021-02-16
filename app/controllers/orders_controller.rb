@@ -22,6 +22,8 @@ class OrdersController < ApplicationController
       session[:charge] = (@order.postage + @customer.for_total_price)
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
+      session[:status] = 0
+
 
 
     elsif params[:order][:delivery_option] == "1"
@@ -34,6 +36,7 @@ class OrdersController < ApplicationController
       session[:charge] = (@order.postage + @customer.for_total_price)
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
+      session[:status] = 0
 
     elsif params[:order][:delivery_option] == "2"
       session[:delivery_postal_code] = params[:order][:delivery_postal_code]
@@ -43,13 +46,8 @@ class OrdersController < ApplicationController
       session[:charge] = (@order.postage + @customer.for_total_price)
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
+      session[:status] = 0
 
-    end
-
-    if session[:payment_method] == "credit"
-      @payment_method = "クレジットカード"
-    else
-      @payment_method = "銀行振込"
     end
 
     render :confirm
@@ -66,7 +64,8 @@ class OrdersController < ApplicationController
       postage: session[:postage],
       charge: session[:charge],
       payment_method: session[:payment_method],
-      customer_id: session[:customer_id]
+      customer_id: session[:customer_id],
+      status: session[:status]
       )
         if @order.save
           @cart_items.each do |cart_item|

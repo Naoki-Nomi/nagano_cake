@@ -5,12 +5,12 @@
       <%= form_with model: @order, url: {controller: 'orders', action: 'confirm'}, local:true do |f| %>
         <h5 class="col font-weight-bold">■ 支払方法</h5>
         <div class="col ml-3">
-          <%= f.radio_button :payment_method, :credit %>
-          <%= f.label :payment_method, "クレジットカード", {value: :credit, style: "display: inline-block;"} %>
+          <%= f.radio_button :payment_method, :クレジットカード %>
+          <%= f.label :payment_method, "クレジットカード", {value: :クレジットカード, style: "display: inline-block;"} %>
         </div>
         <div class="col ml-3">
-          <%= f.radio_button :payment_method, :bank %>
-          <%= f.label :payment_method, "銀行振込", {value: :bank, style: "display: inline-block;"} %>
+          <%= f.radio_button :payment_method, :銀行振込 %>
+          <%= f.label :payment_method, "銀行振込", {value: :銀行振込, style: "display: inline-block;"} %>
         </div>
 
         <h5 class="col font-weight-bold mt-3">■ お届け先</h5>

@@ -89,6 +89,22 @@ h4 {
   border:1px solid black;
 }
 
+.address-table> tbody > tr > td  {
+  border:1px solid black;
+}
+
+.address-table> thead > tr > th  {
+  border:1px solid black;
+}
+
+.order-table> tbody > tr > td  {
+  border:1px solid black;
+}
+
+.order-table> thead > tr > th  {
+  border:1px solid black;
+}
+
 @media screen and (max-width: 768px) {
   .top-card-title {
     font-size: 30px;
