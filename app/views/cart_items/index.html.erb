@@ -10,22 +10,22 @@
       <table class="table cart-item-table tablehover table-bordered">
         <tablehead>
           <tr>
-            <td class="table-active font-weight-bold">商品名</td>
-            <td class="table-active font-weight-bold">単価（税込）</td>
-            <td class="table-active font-weight-bold">数量</td>
-            <td class="table-active font-weight-bold">小計</td>
-            <td class="table-active font-weight-bold"></td>
+            <td class="table-active font-weight-bold", style="width:40%">商品名</td>
+            <td class="table-active font-weight-bold", style="width:15%">単価（税込）</td>
+            <td class="table-active font-weight-bold", style="width:15%">数量</td>
+            <td class="table-active font-weight-bold", style="width:15%">小計</td>
+            <td class="table-active font-weight-bold", style="width:15%"></td>
           </tr>
         </tablehead>
         <tablebody>
           <% @cart_items.each do |cart_item| %>
           <%= form_with model: @cart_items, url: "/cart_items/#{cart_item.id}", method: :patch, local:true do |f| %>
           <tr>
-            <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %><%= cart_item.item.name %></td>
+            <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %><span class="ml-3"><%= cart_item.item.name %></span></td>
             <td><%= cart_item.tax_price %></td>
             <td><%= f.select :amount, options_for_select([1,2,3,4,5,6,7,8,9,10], cart_item.amount) %>
                 <%= cart_item.amount %>個
-                <%= f.submit '変更', class: 'btn btn-success offset-3' %>
+                <%= f.submit '変更', class: 'btn btn-success' %>
             </td>
             <td><%= cart_item.total_price %></td>
             <td><%= link_to '削除する', cart_item, controller: :CartItems, action: :destroy, method: :delete, class: 'btn btn-sm btn-danger' %></td>
@@ -37,11 +37,11 @@
       </table>
         <div class="row">
           <div class="col-2"><%= link_to '買い物を続ける', items_path, class: 'btn btn-success' %></div>
-            <table class="table table-bordered col-6 offset-3 cart-item-table">
+            <table class="table table-bordered col-4 ml-auto mr-3 cart-item-table">
               <tablebody>
                 <tr>
-                  <td>合計金額</td>
-                  <td><%= @customer.check_price %></td>
+                  <td class="table-active font-weight-bold", style="width:50%">合計金額</td>
+                  <td style="width:50%"><%= @customer.check_price %></td>
                 </tr>
               </tablebody>
             </table>

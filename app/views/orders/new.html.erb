@@ -1,47 +1,52 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h5 class="text-center bg-light col-3 offset-1 mt-4 mb-5">注文情報入力</h5>
+      <h4 class="text-center col-3 mt-5 mb-5 page-title font-weight-bold">注文情報入力</h4>
       <%= form_with model: @order, url: {controller: 'orders', action: 'confirm'}, local:true do |f| %>
-      <div class="col-2"><strong>支払方法</strong></div>
-        <div class="col-3 ml-3">
+        <h5 class="col font-weight-bold">■ 支払方法</h5>
+        <div class="col ml-3">
           <%= f.radio_button :payment_method, :credit %>
           <%= f.label :payment_method, "クレジットカード", {value: :credit, style: "display: inline-block;"} %>
         </div>
-        <div class="col-3 ml-3">
+        <div class="col ml-3">
           <%= f.radio_button :payment_method, :bank %>
           <%= f.label :payment_method, "銀行振込", {value: :bank, style: "display: inline-block;"} %>
         </div>
-      <div class="col-2"><strong>お届け先</strong></div>
-      <div class="col-6 mt-2 mb-2 ml-3">
-        <%= f.radio_button :delivery_option, 0 %>
-        <%= label :order_address, "ご自身の住所" %>
+
+        <h5 class="col font-weight-bold mt-3">■ お届け先</h5>
+        <div class="col ml-3">
+          <%= f.radio_button :delivery_option, 0 %>
+          <%= f.label :order_address, "ご自身の住所" %>
           <div class="ml-3"><span>〒</sapn><%= @customer.postal_code %> <%= @customer.address %></div>
           <div class="ml-3"><%= @customer.last_name %> <%= @customer.first_name %></div>
-      </div>
-
-      　<%= f.radio_button :delivery_option, 1 %>
-      　<%= label :order_address, "登録済住所から選択" %>
-      　<div class="field form-group row">
-          <div class="ml-5 col-12"><%= f.collection_select :order_address, @addresses, :id, :total_address, class: 'form-control' %></div>
         </div>
 
-        　<%= f.radio_button :delivery_option, 2 %>
-        　<%= label :order_address, "新しいお届け先" %>
-        　<div class="field form-group row">
+        <div class="col ml-3 mt-2">
+         <%= f.radio_button :delivery_option, 1 %>
+         <%= f.label :order_address, "登録済住所から選択" %>
+      　    <div class="field form-group row">
+            <div class="ml-5 col-6"><%= f.collection_select :order_address, @addresses, :id, :total_address, {}, class: 'form-control' %></div>
+          </div>
+        </div>
+
+        <div class="col ml-3 mt-2">
+          <%= f.radio_button :delivery_option, 2 %>
+          <%= f.label :order_address, "新しいお届け先" %>
+        　<div class="field form-group row d-flex align-items-center">
             <label class="col-2 small ml-5">郵便番号（ハイフンなし）</label>
             <div class="col-3"><%= f.text_field :delivery_postal_code, autofocus: true, placeholder: "0000000", class: 'form-control' %></div>
           </div>
-          <div class="field form-group row">
-            <label class="col-2 samall offset-1 ml-5">住所</label>
+          <div class="field form-group row d-flex align-items-center">
+            <label class="col-2 small ml-5">住所</label>
             <div class="col-6"><%= f.text_field :delivery_address, autofocus: true, placeholder: "東京都渋⾕区代々⽊神園町0-0", class: 'form-control' %></div>
           </div>
-          <div class="field form-group row">
+          <div class="field form-group row d-flex align-items-center">
             <label class="col-2 small ml-5">宛名</label>
             <div class="col-3"><%= f.text_field :delivery_name, autofocus: true, placeholder: "令和道⼦", class: 'form-control' %></div>
           </div>
+        </div>
 
-        <div class="col-3 mx-auto"><%= f.submit '確認画面へ進む',  class: 'btn btn-primary' %></div>
+        <div class="col-3 mx-auto"><%= f.submit '確認画面へ進む',  class: 'btn btn-primary mt-3' %></div>
       <% end %>
     </div>
   </div>

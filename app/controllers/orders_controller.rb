@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
@@ -10,7 +11,7 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new(order_params)
     @addresses = Address.where(customer_id: @customer.id)
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @order.postage = 800
 
     if params[:order][:delivery_option] == "0"
@@ -43,20 +44,20 @@ class OrdersController < ApplicationController
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
 
-      # address = Address.new
-      # address.name =
-      # address.postal_code =
-      # ...
-      # session[:new_address] = address # あたらしいならば
     end
 
-    # session[:pending_order] = order
+    if session[:payment_method] == "credit"
+      @payment_method = "クレジットカード"
+    else
+      @payment_method = "銀行振込"
+    end
 
     render :confirm
+
   end
 
   def create
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
 
     @order = Order.create(
       delivery_postal_code: session[:delivery_postal_code],
@@ -95,7 +96,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all.includes([order_items: :item])
+    @orders = current_customer.orders.all.includes([order_items: :item])
   end
 
   def show

@@ -3,43 +3,46 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h4 class="text-center bg-light col-2 offset-2 mt-4 mb-5">マイページ</h4>
+      <h4 class="text-center col-2 offset-2 mt-4 mb-5 page-title font-weight-bold">マイページ</h4>
       <div class="row mb-2">
-          <h4 class="col-2">登録情報</h4><p><%= link_to '編集する', customers_mypage_edit_path(@customer.id), class: 'btn btn-success' %></p>
+          <h4 class="col-2 font-weight-bold">登録情報</h4>
+          <%= link_to '編集する', customers_mypage_edit_path(@customer.id), class: 'btn btn-success col-1' %>
       </div>
        <table class="table table-hover table-bordered col-7">
           <tbody>
             <tr>
-              <td class="table-secondary" style="width:20%">氏名</td>
+              <td class="table-active" style="width:20%">氏名</td>
               <td style="width:60%"><%= @customer.last_name %> <%= @customer.first_name %></td>
             </tr>
             <tr>
-              <td class="table-secondary">カナ</td>
+              <td class="table-active">カナ</td>
               <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
             </tr>
             <tr>
-              <td class="table-secondary">郵便番号</td>
+              <td class="table-active">郵便番号</td>
               <td><%= @customer.postal_code %></td>
             </tr>
             <tr>
-              <td class="table-secondary">住所</td>
+              <td class="table-active">住所</td>
               <td><%= @customer.address %></td>
             </tr>
             <tr>
-              <td class="table-secondary">電話番号</td>
+              <td class="table-active">電話番号</td>
               <td><%= @customer.telephone_number %></td>
             </tr>
             <tr>
-              <td class="table-secondary">メールアドレス</td>
+              <td class="table-active">メールアドレス</td>
               <td><%= @customer.email %></td>
             </tr>
           </tbody>
         </table>
       <div class="row">
-          <h4 class="col-2">配送先</h4><p><%= link_to '一覧を見る', customers_mypage_path(@customer.id), class: 'btn btn-primary' %></p>
+          <h4 class="col-2 font-weight-bold">配送先</h4>
+          <%= link_to '一覧を見る', addresses_path, class: 'btn btn-primary col-2' %>
       </div>
-      <div class="row">
-          <h4 class="col-2">注文履歴</h4><p><%= link_to '一覧を見る', customers_mypage_path(@customer.id), class: 'btn btn-primary' %></p>
+      <div class="row mt-3">
+          <h4 class="col-2 font-weight-bold">注文履歴</h4>
+          <%= link_to '一覧を見る', orders_path, class: 'btn btn-primary col-2' %>
       </div>
     </div>
   </div>

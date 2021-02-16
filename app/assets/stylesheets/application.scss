@@ -81,7 +81,13 @@ h4 {
   border:1px solid black;
 }
 
+.cart-item-table-total {
+  margin-right: auto;
+}
 
+.confirm-table> tbody > tr > td {
+  border:1px solid black;
+}
 
 @media screen and (max-width: 768px) {
   .top-card-title {

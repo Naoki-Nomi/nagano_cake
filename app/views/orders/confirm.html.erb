@@ -1,51 +1,63 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h4 class="col-3 text-center bg-light offset-1">注文情報確認</h4>
-      <table class="table table-bordered">
-        <tablehead clss="table-secondary">
-          <tr>
-            <td>商品名</td>
-            <td>単価（税込）</td>
-            <td>数量</td>
-            <td>小計</td>
-          </tr>
-        </tablehead>
-        <% @cart_items.each do |cart_item| %>
-        <tablebody>
-          <tr>
-            <td><%= cart_item.item.name %></td>
-            <td><%= cart_item.tax_price %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.total_price %></td>
-          </tr>
-        </tablebody>
-        <% end %>
-      </table>
-      <table class="table table-bordered">
-        <tablebody>
-          <tr>
-            <td class="table-secondary">送料</td>
-            <td><%= @order.postage %></td>
-          </tr>
-          <tr>
-            <td class="table-secondary">商品合計</td>
-            <td><%= @customer.check_price %></td>
-          </tr>
-          <tr>
-            <td class="table-secondary">請求金額</td>
-            <td><%= (@order.postage + @customer.for_total_price).to_s(:delimited, delimiter: ',') %></td>
-          </tr>
-        </tablebody>
-      </table>
-      <div>支払方法</div>
-      <%= session[:payment_method] %>
-      <div>お届け先</div>
-      <%= session[:delivery_postal_code] %>
-      <%= session[:delivery_address] %>
-      <%= session[:delivery_name] %>
+      <h4 class="col-2 mt-5 ml-3 text-center page-title font-weight-bold">注文情報確認</h4>
+      <div class="row mt-3">
+        <table class="col-7 table table-bordered confirm-table">
+          <tablehead clss="table-secondary">
+            <tr>
+              <td class="table-active", style="width:40%">商品名</td>
+              <td class="table-active", style="width:20%">単価（税込）</td>
+              <td class="table-active", style="width:20%">数量</td>
+              <td class="table-active", style="width:20%">小計</td>
+            </tr>
+          </tablehead>
+          <% @cart_items.each do |cart_item| %>
+          <tablebody>
+            <tr>
+              <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %>
+                  <span class="ml-3 font-weight-bold"><%= cart_item.item.name %></span>
+              </td>
+              <td><%= cart_item.tax_price %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.total_price %></td>
+            </tr>
+          </tablebody>
+          <% end %>
+        </table>
+        <table class="col-4 offset-1 table table-bordered confirm-table">
+          <tablebody>
+            <tr>
+              <td class="table-active">送料</td>
+              <td><%= @order.postage %></td>
+            </tr>
+            <tr>
+              <td class="table-active">商品合計</td>
+              <td><%= @customer.check_price %></td>
+            </tr>
+            <tr>
+              <td class="table-active">請求金額</td>
+              <td><%= (@order.postage + @customer.for_total_price).to_s(:delimited, delimiter: ',') %></td>
+            </tr>
+          </tablebody>
+        </table>
+      </div>
 
-      <%= link_to '注文を確定する', orders_path, method: :post, class: 'btn btn-success' %>
+      <div class="row">
+        <h5 class="font-weight-bold">支払方法</h5>
+        <p class="ml-3"><%= @payment_method %></p>
+      </div>
+      <div class="row">
+        <h5 class="font-weight-bold">お届け先</h5>
+        <p class="ml-3">
+          <span>〒</span><%= session[:delivery_postal_code] %> <%= session[:delivery_address] %></br>
+          <%= session[:delivery_name] %>
+        </p>
+      </div>
+
+      <div class="col-3 mx-auto">
+        <%= link_to '注文を確定する', orders_path, method: :post, class: 'btn btn-success' %>
+      </div>
 
     </div>
   </div>
