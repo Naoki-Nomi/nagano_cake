@@ -2,18 +2,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search
 
+
   def after_sign_in_path_for(resource)
     case resource
     when Admin
-      admin_items_path
+      admin_root_path(:order_sort => 0)
     when Customer
-      items_path
+      root_path
     end
   end
 
-  def after_sign_up_path_for(resource)
-    items_path
-  end
 
 
   def set_search

@@ -15,16 +15,23 @@
           </thead>
           <tbody>
             <% @search_customers.each do |customer| %>
+            <% if customer.is_deleted == '有効'
+                css_class = "text-success"
+               else
+                css_class = "text-muted"
+               end
+            %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id) %></td>
+              <td><u><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id), class: 'text-dark' %></u></td>
               <td><%= customer.email %></td>
-              <td><%= customer.is_deleted ? '退会' : '有効' %></td>
+              <td class="<%= css_class %>"><%= customer.is_deleted %></td>
             </tr>
             <% end %>
           </tbody>
         </table>
       </div>
+      <%= paginate @search_customers, theme: 'twitter-bootstrap-4' %>
     </div>
   </div>
 </div>

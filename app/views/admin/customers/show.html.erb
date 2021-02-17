@@ -2,7 +2,14 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-11">
-      <h4 class="text-center bg-light col-4 mt-4 mb-5"><%= @name %>さんの会員詳細</h4>
+      <h4 class="text-center col-4 mt-4 mb-5 page-title font-weight-bold"><%= @name %>さんの会員詳細</h4>
+
+        <% if @customer.is_deleted == '有効'
+              css_class = "text-success"
+           else
+              css_class = "text-muted"
+           end
+        %>
 
       <div class="row mb-2">
         <label class="col-3">会員ID</label>
@@ -34,7 +41,7 @@
       </div>
       <div class="row mb-2">
         <label class="col-3">会員ステータス</label>
-        <div class="col-4"><%= @customer.is_deleted ? '退会' : '有効' %></div>
+        <div class="<%= css_class %> col-4"><%= @customer.is_deleted %></div>
       </div>
       <div class="row">
         <div class="offset-3"><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: 'btn btn-sm btn-success' %></div>

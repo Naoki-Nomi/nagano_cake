@@ -41,10 +41,10 @@
         <div class="field form-group row">
           <label class="col-3">会員ステータス</label>
           <div class="col-3">
-            <%= f.radio_button :is_deleted, :false %>
-            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
-            <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :有効 %>
+            <%= f.label :is_deleted, "有効", {value: :有効, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :退会済み %>
+            <%= f.label :is_deleted, "退会済み", {value: :退会済み, style: "display: inline-block;"} %>
           </div>
         </div>
 

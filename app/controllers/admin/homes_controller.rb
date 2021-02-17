@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   def top
     case params[:order_sort]

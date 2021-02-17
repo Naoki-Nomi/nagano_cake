@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   def new
     @item = Item.new
@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to admin_root_path
+      redirect_to admin_item_path(@item.id)
     else
       @items = Item.all
       render :index
@@ -17,7 +17,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).reverse_order
   end
 
   def show

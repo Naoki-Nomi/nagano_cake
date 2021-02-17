@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :item_search
 
   def index
-    @items = Item.page(params[:page]).reverse_order
+    @items = Item.page(params[:page])
     @genres = Genre.all
 
     if params[:q]
