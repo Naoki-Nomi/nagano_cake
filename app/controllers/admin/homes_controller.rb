@@ -5,12 +5,12 @@ class Admin::HomesController < ApplicationController
     case params[:order_sort]
 
     when "0"
-      @orders = Order.all
+      @orders = Order.page(params[:page])
     when "1"
       @customer = Customer.find(params[:id])
-      @orders = @customer.orders
+      @orders = @customer.orders.page(params[:page])
     else
-      @orders = Order.all
+      @orders = Order.page(params[:page])
     end
   end
 

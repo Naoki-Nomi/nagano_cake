@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     patch '/order_items/:id' => 'order_items#update'
   end
 
-  devise_for :customers
+  devise_for :customers, controllers: {
+    :registrations => 'customers/registrations'
+}
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :items, only: [:index, :show]

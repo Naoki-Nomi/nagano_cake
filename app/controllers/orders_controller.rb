@@ -74,6 +74,7 @@ class OrdersController < ApplicationController
                @order_item.item_id = cart_item.item.id
                @order_item.amount = cart_item.amount
                @order_item.price = cart_item.for_check_price
+               @order_item.making_status = 0
                if @order_item.save
                  current_customer.cart_items.destroy_all
                end

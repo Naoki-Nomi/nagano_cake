@@ -1,75 +1,77 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h4 class="text-center bg-light col-4 mt-3 mb-3 offset-1">注文履歴詳細</h4>
+      <h4 class="text-center col-4 mt-5 mb-3 offset-1 page-title font-weight-bold">注文履歴詳細</h4>
       <%= form_with model: @order, url: {controller: 'orders', action: 'update' }, local:true do |f| %>
       <div class="row">
-        <div>購入者</div>
+        <div class="col-3">購入者</div>
         <% name = @order.customer.last_name + " " + @order.customer.first_name %>
-        <div><%= link_to name, admin_customer_path(@order.customer.id) %></div>
+        <div class="col-2"><u><%= link_to name, admin_customer_path(@order.customer.id), class: 'text-dark' %></u></div>
       </div>
-      <div class="row">
-        <div>注文日</div>
-        <div><%= @order.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="row mt-3">
+        <div class="col-3">注文日</div>
+        <div class="col-2"><%= @order.created_at.strftime('%Y/%m/%d') %></div>
       </div>
-      <div class="row">
-        <div>配送先</div>
-        <div>
+      <div class="row mt-3">
+        <div class="col-3">配送先</div>
+        <div class="col-6">
           <%= @order.delivery_postal_code %> <%= @order.delivery_address %><br>
           <%= @order.delivery_name %>
         </div>
       </div>
-      <div class="row">
-        <div>支払方法</div>
-        <div><%= @order.payment_method %></div>
+      <div class="row mt-3">
+        <div class="col-3">支払方法</div>
+        <div class="col-3"><%= @order.payment_method %></div>
       </div>
-      <div class="row">
-        <div>注文ステータス</div>
-        <div><%= f.select :status, options_for_select(Order.statuses) %><%= f.submit '更新', class: 'btn btn-success offset-3' %></div>
+      <div class="row mt-3">
+        <div class="col-3">注文ステータス</div>
+        <div class="col-6"><%= f.select :status, { "入金待ち": "入金待ち", "入金確認": "入金確認", "製作中": "製作中", "発送準備中": "発送準備中", "発送済み": "発送済み" }, class: 'form-control' %><%= f.submit '更新', class: 'btn btn-success ml-3' %></div>
       </div>
       <% end %>
 
-      <table class="table">
-        <tablehead>
-          <tr>
-            <td class="table-active">商品名</td>
-            <td class="table-active">単価（税込）</td>
-            <td class="table-active">数量</td>
-            <td class="table-active">小計</td>
-            <td class="table-active">製作ステータス</td>
-            <td></td>
-          </tr>
-        </tablehead>
-        <tablebody>
-          <% @order_items.each do |order_item| %>
-            <%= form_with model: order_item, url: {controller: 'order_items', action: 'update' }, local:true do |f| %>
+      <div class="row">
+        <table class="table col-7 mt-3">
+          <thead>
             <tr>
-              <td><%= order_item.item.name %></td>
-              <td><%= order_item.order_unit_price %></td>
-              <td><%= order_item.amount %></td>
-              <td><%= order_item.order_price %></td>
-              <td><%= f.select :making_status, options_for_select(OrderItem.making_statuses) %><%= f.submit '更新', class: 'btn btn-success offset-3' %></td>
+              <th class="table-active">商品名</th>
+              <th class="table-active">単価（税込）</th>
+              <th class="table-active">数量</th>
+              <th class="table-active">小計</th>
+              <th class="table-active">製作ステータス</th>
             </tr>
+          </thead>
+          <tbody>
+            <% @order_items.each do |order_item| %>
+              <%= form_with model: order_item, url: {controller: 'order_items', action: 'update' }, local:true do |f| %>
+              <tr>
+                <td><%= order_item.item.name %></td>
+                <td><%= order_item.order_unit_price %></td>
+                <td><%= order_item.amount %></td>
+                <td><%= order_item.order_price %></td>
+                <td><%= f.select :making_status, { "製作不可": "製作不可", "製作待ち": "製作待ち", "製作中": "製作中", "製作完了": "製作完了" } %><%= f.submit '更新', class: 'btn btn-success offset-3' %></td>
+              </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tablebody>
-        <table>
-          <tablebody>
-            <tr>
-              <td>商品合計</td>
-              <td><%= @order_unit_price.to_s(:delimited, delimiter: ',') %></td>
-            </tr>
-            <tr>
-              <td>送料</td>
-              <td><%= @order.postage.to_s(:delimited, delimiter: ',') %></td>
-            </tr>
-            <tr>
-              <td>請求金額合計</td>
-              <td><%= @order.charge.to_s(:delimited, delimiter: ',') %></td>
-            </tr>
-          </tablebody>
+          </tbody>
+
+          <table class="table table-borderless col-3 offset-1">
+            <tbody>
+              <tr>
+                <td class="font-weight-bold">商品合計</td>
+                <td><%= @order_unit_price.to_s(:delimited, delimiter: ',') %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">送料</td>
+                <td><%= @order.postage.to_s(:delimited, delimiter: ',') %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">請求金額合計</td>
+                <td class="font-weight-bold"><%= @order.charge.to_s(:delimited, delimiter: ',') %></td>
+              </tr>
+            </tbody>
+          </table>
         </table>
-      </table>
+      </div>
     </div>
   </div>
 </div>

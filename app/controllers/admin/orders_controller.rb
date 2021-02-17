@@ -8,16 +8,21 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to admin_path(@order.id)
-  end
+    order = Order.find(params[:id])
+    order_items = OrderItem.where(order_id: order.id)
+    if order.update(order_params)
+      if order.status == "入金確認"
+        order_items.update(making_status: "製作待ち")
+      end
+    end
 
+    redirect_to admin_path(order.id)
+  end
 
   private
 
   def order_params
-    params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name, :postage, :charge, :payment_method, :customer_id).merge(status: params[:order][:status].to_i)
+    params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name, :postage, :charge, :payment_method, :customer_id, :status)
   end
 
 end
