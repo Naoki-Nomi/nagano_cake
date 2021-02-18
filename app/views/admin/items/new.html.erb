@@ -1,35 +1,40 @@
-<p id="notice"></p>
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <% @item.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="mx-auto col-11">
       <div class="row">
-        <h4 class="text-center col-2 mt-4 mb-5 offset-2 page-title font-weight-bold">商品新規登録</h4>
+        <h4 class="text-center col-8 col-lg-3 mt-4 mb-5 offset-2 page-title">商品新規登録</h4>
       </div>
         <%= form_with model: @item, url: '/admin/items', local: true do |f| %>
-          <div class="row form-group">
-            <label class="col-2 offset-3 d-flex align-items-center">商品画像</label>
-            <div class="col-3"><%= f.attachment_field :image %></div>
+          <div class="row form-group d-flex align-items-center">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">商品画像</label>
+            <div class="col-lg-4"><%= f.attachment_field :image %></div>
           </div>
-          <div class="row form-group">
-            <label class="col-2 offset-3 d-flex align-items-center">商品名</label>
-            <div class="col-3"><%= f.text_field :name, placeholder: "商品名",  class: 'form-control' %></div>
+          <div class="row form-group d-flex align-items-center">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">商品名</label>
+            <div class="col-lg-4"><%= f.text_field :name, placeholder: "商品名",  class: 'form-control' %></div>
           </div>
-          <div class="row form-group">
-            <label class="col-2 offset-3 d-flex align-items-center">商品説明</label>
-            <div class="col-3"><%= f.text_area :introduction, placeholder: "ここに説明⽂を記述します", class: 'form-control' %></div>
+          <div class="row form-group d-flex align-items-center">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">商品説明</label>
+            <div class="col-lg-4"><%= f.text_area :introduction, rows: "5", placeholder: "ここに説明⽂を記述します", class: 'form-control' %></div>
           </div>
-          <div class="row form-group">
-            <label class="col-2 offset-3 d-flex align-items-center">ジャンル</label>
-            <div class="col-3"><%= f.collection_select :genre_id, Genre.all, :id, :name, {}, class: 'form-control' %></div>
+          <div class="row form-group d-flex align-items-center">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">ジャンル</label>
+            <div class="col-lg-4"><%= f.collection_select :genre_id, Genre.all, :id, :name, {}, class: 'form-control' %></div>
           </div>
-          <div class="row form-group">
-            <label class="col-2 offset-3 d-flex align-items-center">税抜き価格</label>
-            <div class="col-3"><%= f.number_field :price, placeholder: "1000", class: 'form-control' %></div>
+          <div class="row form-group d-flex align-items-center">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">税抜き価格</label>
+            <div class="col-lg-4"><%= f.number_field :price, placeholder: "1000", class: 'form-control' %></div>
             <span class="mr-3 mt-2">円</span>
           </div>
           <div class="row">
-            <label class="col-2 offset-3 d-flex align-items-center">販売ステータス</label>
-            <div class="col-3">
+            <label class="col-lg-2 offset-3 d-flex align-items-center">販売ステータス</label>
+            <div class="col-lg-4">
               <%= f.radio_button :is_active, :販売中 %>
               <%= f.label :is_active, "販売中", {value: :販売中, style: "display: inline-block;"} %>
               <%= f.radio_button :is_active, :販売停止中 %>

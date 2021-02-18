@@ -2,28 +2,28 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-9">
-      <h4 class="text-center bg-light col-2 mt-4 mb-5 font-weight-bold page-title">ログイン</h4>
+      <h4 class="text-center bg-light col-lg-3 mt-4 mb-5 page-title">ログイン</h4>
       <div class="row">
-        <div class="text-center bg-light col-4 offset-1 mb-4 font-weight-bold page-title">会員の方はこちらからログイン</div>
+        <div class="text-center bg-light col-lg-5 offset-1 mb-4 page-title">会員の方はこちらからログイン</div>
       </div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %></div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %></div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %></div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field form-group row d-flex align-items-center">
-            <label class="col-2 offset-2">メールアドレス</label>
-            <div class="col-7"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></div>
+            <label class="col-lg-2 offset-2">メールアドレス</label>
+            <div class="col-lg-7"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></div>
           </div>
           <div class="field form-group row d-flex align-items-center">
-            <label class="col-2 offset-2">パスワード</label>
-            <div class="col-7"><%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %></div>
+            <label class="col-lg-2 offset-2">パスワード</label>
+            <div class="col-lg-7"><%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %></div>
           </div>
           <div class="actions btn-wrapper form-group row">
-            <div class="col-5 offset-4"><%= f.submit "ログイン", class: 'mt-3 btn btn-primary w-50' %></div>
+            <div class="col-lg-5 offset-4"><%= f.submit "ログイン", class: 'mt-3 btn btn-primary w-50' %></div>
           </div>
         <% end %>
       <div class="row mt-4">
-        <div class="text-center bg-light col-4 offset-1 mb-3">会員登録がお済みでない⽅</div>
+        <div class="text-center bg-light col-lg-4 offset-1 mb-3">会員登録がお済みでない⽅</div>
       </div>
       <div class="row">
         <u class="offset-3"><%= render "devise/shared/links" %></u>

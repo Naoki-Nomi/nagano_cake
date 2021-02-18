@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h4 class="col-3 offset-1 mt-5 text-center page-title font-weight-bold">注文履歴一覧</h4>
+      <h4 class="col-lg-3 offset-1 mt-5 text-center page-title">注文履歴一覧</h4>
       <table class="mt-5 table table-bordered table-hover order-table">
         <thead>
           <tr>
-            <th class="table-active">注文日</th>
-            <th class="table-active">配送先</th>
-            <th class="table-active">注文商品</th>
-            <th class="table-active">支払金額</th>
-            <th class="table-active">ステータス</th>
-            <th class="table-active">注文詳細</th>
+            <th class="table-active" style="width:20%">注文日</th>
+            <th class="table-active" style="width:20%">配送先</th>
+            <th class="table-active" style="width:15%">注文商品</th>
+            <th class="table-active" style="width:15%">支払金額</th>
+            <th class="table-active" style="width:15%">ステータス</th>
+            <th class="table-active" style="width:15%">注文詳細</th>
           </tr>
         </thead>
           <tbody>
@@ -23,7 +23,7 @@
               </td>
               <td>
                 <% order.order_items.each do |order_item| %>
-                  <%= order_item.item.name %>
+                  <%= order_item.item.name %><br>
                 <% end %>
               </td>
               <td><%= order.charge.to_s(:delimited, delimiter: ',') %><span>円</span></td>

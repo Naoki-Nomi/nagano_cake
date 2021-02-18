@@ -20,7 +20,6 @@ class Customer < ApplicationRecord
   validates :telephone_number, presence: true
   validates :last_name, presence: true
 
-
   def check_price
     price = cart_items.to_a.sum { |item| item.for_check_price }
     price.to_s(:delimited, delimiter: ',')

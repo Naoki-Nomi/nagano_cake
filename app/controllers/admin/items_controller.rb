@@ -11,13 +11,12 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       redirect_to admin_item_path(@item.id)
     else
-      @items = Item.all
-      render :index
+      render :new
     end
   end
 
   def index
-    @items = Item.page(params[:page]).reverse_order
+    @items = Item.page(params[:page])
   end
 
   def show

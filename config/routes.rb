@@ -11,12 +11,14 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     get '/orders/:id' => 'orders#show'
     patch '/orders/:id' => 'orders#update'
-    patch '/order_items/:id' => 'order_items#update'
+    patch '/order_items/:id' => 'order_items#update', as: "order_items_path"
   end
 
   devise_for :customers, controllers: {
-    :registrations => 'customers/registrations'
-}
+    :registrations => 'customers/registrations',
+    :sessions => 'customers/sessions'
+  }
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :items, only: [:index, :show]

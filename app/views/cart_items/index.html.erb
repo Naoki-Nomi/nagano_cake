@@ -4,24 +4,24 @@
   <div class="row">
     <div class="mx-auto col-12">
       <div class="row">
-        <h4 class="col-3 ml-3 mb-5 mt-3 text-center page-title font-weight-bold">ショッピングカート</h4>
+        <h4 class="col-lg-4 ml-3 mb-5 mt-3 text-center page-title font-weight-bold">ショッピングカート</h4>
         <div class="col text-right"><%= link_to 'カートを空にする', '/cart_items', method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-sam btn-danger' %></div>
       </div>
       <table class="table cart-item-table tablehover table-bordered">
-        <tablehead>
+        <thead>
           <tr>
-            <td class="table-active font-weight-bold", style="width:40%">商品名</td>
-            <td class="table-active font-weight-bold", style="width:15%">単価（税込）</td>
-            <td class="table-active font-weight-bold", style="width:15%">数量</td>
-            <td class="table-active font-weight-bold", style="width:15%">小計</td>
-            <td class="table-active font-weight-bold", style="width:15%"></td>
+            <th class="table-active font-weight-bold", style="width:40%">商品名</th>
+            <th class="table-active font-weight-bold", style="width:13%">単価（税込）</th>
+            <th class="table-active font-weight-bold", style="width:19%">数量</th>
+            <th class="table-active font-weight-bold", style="width:13%">小計</th>
+            <th class="table-active font-weight-bold", style="width:15%"></th>
           </tr>
-        </tablehead>
-        <tablebody>
+        </thead>
+        <tbody>
           <% @cart_items.each do |cart_item| %>
           <%= form_with model: @cart_items, url: "/cart_items/#{cart_item.id}", method: :patch, local:true do |f| %>
           <tr>
-            <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %><span class="ml-3"><%= cart_item.item.name %></span></td>
+            <td><%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %><span class="ml-3"><%= cart_item.item.name %></span></td>
             <td><%= cart_item.tax_price %></td>
             <td><%= f.select :amount, options_for_select([1,2,3,4,5,6,7,8,9,10], cart_item.amount) %>
                 <%= cart_item.amount %>個
@@ -33,11 +33,11 @@
           <%= f.hidden_field :cart_item_id, :value => cart_item.id %>
           <% end %>
           <% end %>
-        </tablebody>
+        </tbody>
       </table>
         <div class="row">
-          <div class="col-2"><%= link_to '買い物を続ける', items_path, class: 'btn btn-success' %></div>
-            <table class="table table-bordered col-4 ml-auto mr-3 cart-item-table">
+          <div class="col-lg-3"><%= link_to '買い物を続ける', root_path, class: 'btn btn-success' %></div>
+            <table class="table table-bordered col-lg-4 ml-auto mr-3 cart-item-table">
               <tablebody>
                 <tr>
                   <td class="table-active font-weight-bold", style="width:50%">合計金額</td>

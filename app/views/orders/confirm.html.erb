@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12">
-      <h4 class="col-2 mt-5 ml-3 text-center page-title font-weight-bold">注文情報確認</h4>
+      <h4 class="col-lg-3 mt-5 ml-3 text-center page-title">注文情報確認</h4>
       <div class="row mt-3">
-        <table class="col-7 table table-bordered confirm-table">
-          <tablehead clss="table-secondary">
+        <table class="col-lg-7 table table-bordered confirm-table">
+          <thead clss="table-secondary">
             <tr>
-              <td class="table-active", style="width:40%">商品名</td>
-              <td class="table-active", style="width:20%">単価（税込）</td>
-              <td class="table-active", style="width:20%">数量</td>
-              <td class="table-active", style="width:20%">小計</td>
+              <th class="table-active", style="width:40%">商品名</th>
+              <th class="table-active", style="width:24%">単価（税込）</th>
+              <th class="table-active", style="width:18%">数量</th>
+              <th class="table-active", style="width:18%">小計</th>
             </tr>
-          </tablehead>
+          </thead>
           <% @cart_items.each do |cart_item| %>
-          <tablebody>
+          <tbody>
             <tr>
               <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %>
                   <span class="ml-3 font-weight-bold"><%= cart_item.item.name %></span>
@@ -22,24 +22,24 @@
               <td><%= cart_item.amount %></td>
               <td><%= cart_item.total_price %></td>
             </tr>
-          </tablebody>
+          </tbody>
           <% end %>
         </table>
-        <table class="col-4 offset-1 table table-bordered confirm-table">
-          <tablebody>
+        <table class="col-lg-4 offset-1 table table-bordered confirm-table">
+          <tbody>
             <tr>
-              <td class="table-active">送料</td>
+              <td class="table-active font-weight-bold">送料</td>
               <td><%= @order.postage %></td>
             </tr>
             <tr>
-              <td class="table-active">商品合計</td>
+              <td class="table-active font-weight-bold">商品合計</td>
               <td><%= @customer.check_price %></td>
             </tr>
             <tr>
-              <td class="table-active">請求金額</td>
+              <td class="table-active font-weight-bold">請求金額</td>
               <td><%= (@order.postage + @customer.for_total_price).to_s(:delimited, delimiter: ',') %></td>
             </tr>
-          </tablebody>
+          </tbody>
         </table>
       </div>
 
@@ -55,7 +55,7 @@
         </p>
       </div>
 
-      <div class="col-3 mx-auto">
+      <div class="col-lg-3 mx-auto">
         <%= link_to '注文を確定する', orders_path, method: :post, class: 'btn btn-success' %>
       </div>
 

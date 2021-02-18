@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order.postage = 800
 
+    #delivery_optionの値によって条件分岐する
+
     if params[:order][:delivery_option] == "0"
       session[:delivery_postal_code] = @customer.postal_code
       session[:delivery_address] = @customer.address
@@ -23,8 +25,6 @@ class OrdersController < ApplicationController
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
       session[:status] = 0
-
-
 
     elsif params[:order][:delivery_option] == "1"
       @address_id = params[:order][:order_address].to_i
@@ -70,7 +70,6 @@ class OrdersController < ApplicationController
         if @order.save
           @cart_items.each do |cart_item|
             @order_item = @order.order_items.build(order_item_params)
-
                @order_item.item_id = cart_item.item.id
                @order_item.amount = cart_item.amount
                @order_item.price = cart_item.for_check_price
@@ -78,17 +77,8 @@ class OrdersController < ApplicationController
                if @order_item.save
                  current_customer.cart_items.destroy_all
                end
-
           end
-
         end
-
-  #あるならば
-  # if session[:new_address]
-  #     address = session[:new_address]
-  #     address.save
-  # end
-
     redirect_to orders_complete_path
   end
 

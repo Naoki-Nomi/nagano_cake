@@ -11,6 +11,19 @@ Admin.find_or_create_by(id: 1) do |admin|
  admin.password = "example"
 end
 
+Customer.find_or_create_by(id: 1) do |customer|
+ customer.last_name = "田中"
+ customer.first_name = "太郎"
+ customer.last_name_kana = "タナカ"
+ customer.first_name_kana = "タロウ"
+ customer.email = "tanaka@com"
+ customer.postal_code = "10000001"
+ customer.address = "東京都港区３丁目"
+ customer.telephone_number = "101000011111"
+ customer.is_deleted = "有効"
+ customer.password = "tanaka"
+end
+
 Genre.create!(
  [
   {
@@ -66,6 +79,5 @@ Item.create!(
    price: "500",
    genre_id: 1
    }
-
  ]
  )

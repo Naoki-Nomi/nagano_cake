@@ -5,6 +5,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
     @order_unit_price = @order_items.all.sum(:price)
+
   end
 
   def update

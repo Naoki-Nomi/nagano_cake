@@ -22,7 +22,10 @@ class CustomersController < ApplicationController
   def quit
     customer = Customer.find(current_customer.id)
     customer.update_attributes(is_deleted: true)
-    redirect_to customers_mypage_path(current_customer.id)
+
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   private

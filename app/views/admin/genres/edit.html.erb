@@ -3,12 +3,12 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-11">
-      <h4 class="text-center col-3 mt-4 mb-5 page-title font-weight-bold">ジャンル編集</h4>
+      <h4 class="text-center col-8 col-lg-3 mt-4 mb-5 page-title">ジャンル編集</h4>
         <%= form_with model: @genre, url: {controller: 'genres', action: 'update' }, local:true do |f| %>
           <div class="row form-group">
-            <label class="col-2 text-center">ジャンル名</label>
-            <div class="col-3"><%= f.text_field :name, class: 'form-control' %></div>
-             <div class="col-3"><%= f.submit '変更を保存', class: 'btn btn-success btn-primary w-50' %></div>
+            <label class="col-5 col-lg-2 d-flex align-items-center">ジャンル名</label>
+            <div class="col-6 col-lg-3"><%= f.text_field :name, class: 'form-control' %></div>
+             <div class="col-lg-3"><%= f.submit '変更を保存', class: 'btn btn-success w-80' %></div>
           </div>
         <% end %>
       </div>

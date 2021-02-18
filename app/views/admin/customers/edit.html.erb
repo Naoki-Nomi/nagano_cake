@@ -3,44 +3,44 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-11">
-      <h4 class="text-center bg-light col-4 mt-4 mb-5"><%= @name %>さんの会員詳細</h4>
+      <h4 class="text-center col-lg-5 mt-4 mb-5 page-title"><%= @name %>さんの会員詳細</h4>
       <%= form_with model: @customer, url: {controller: 'customers', action: 'update' }, local:true do |f| %>
 
         <div class="field form-group row">
-          <label class="col-3">名前</label>
-          <div class="col-3"><%= f.text_field :last_name, autofocus: true, class: 'form-control' %></div>
-          <div class="col-3"><%= f.text_field :first_name, autofocus: true, class: 'form-control' %></div>
+          <label class="col-lg-3">名前</label>
+          <div class="col-lg-3"><%= f.text_field :last_name, autofocus: true, class: 'form-control' %></div>
+          <div class="col-lg-3"><%= f.text_field :first_name, autofocus: true, class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">フリガナ</label>
-          <div class="col-3"><%= f.text_field :last_name_kana, autofocus: true, class: 'form-control' %></div>
-          <div class="col-3"><%= f.text_field :first_name_kana, autofocus: true, class: 'form-control' %></div>
+          <label class="col-lg-3">フリガナ</label>
+          <div class="col-lg-3"><%= f.text_field :last_name_kana, autofocus: true, class: 'form-control' %></div>
+          <div class="col-lg-3"><%= f.text_field :first_name_kana, autofocus: true, class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">郵便番号</label>
-          <div class="col-3"><%= f.text_field :postal_code, autofocus: true,class: 'form-control' %></div>
+          <label class="col-lg-3">郵便番号</label>
+          <div class="col-lg-3"><%= f.text_field :postal_code, autofocus: true,class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">住所</label>
-          <div class="col-6"><%= f.text_field :address, autofocus: true, class: 'form-control' %></div>
+          <label class="col-lg-3">住所</label>
+          <div class="col-lg-6"><%= f.text_field :address, autofocus: true, class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">電話番号</label>
-          <div class="col-3"><%= f.text_field :telephone_number, class: 'form-control' %></div>
+          <label class="col-lg-3">電話番号</label>
+          <div class="col-lg-3"><%= f.text_field :telephone_number, class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">メールアドレス</label>
-          <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></div>
+          <label class="col-lg-3">メールアドレス</label>
+          <div class="col-lg-3"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></div>
         </div>
 
         <div class="field form-group row">
-          <label class="col-3">会員ステータス</label>
-          <div class="col-3">
+          <label class="col-lg-3">会員ステータス</label>
+          <div class="col-lg-3">
             <%= f.radio_button :is_deleted, :有効 %>
             <%= f.label :is_deleted, "有効", {value: :有効, style: "display: inline-block;"} %>
             <%= f.radio_button :is_deleted, :退会済み %>

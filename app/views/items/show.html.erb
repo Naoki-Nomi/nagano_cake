@@ -3,10 +3,10 @@
   <div class="row">
     <div class="mx-auto col-12">
       <div class="row">
-        <div class="col-6">
-          <%= attachment_image_tag @item, :image, :fill, 800, 800, fallback: "no_image.jpg", class: 'mx-auto d-block mt-5' %>
+        <div class="col-lg-6">
+          <%= attachment_image_tag @item, :image, :fill, 250, 250, fallback: "no_image.jpg", class: 'mx-auto d-block mt-5' %>
         </div>
-        <div class="col-6 mt-5">
+        <div class="col-lg-6 mt-5">
           <div class="row">
             <h3 class="font-weight-bold"><%= @item.name %></h3>
           </div>
@@ -20,7 +20,7 @@
         <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
           <div class="row">
             <div class="form-group d-flex">
-              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], { include_blank: "個数選択" }, { class: "form-control form-custom mt-5" } %>
+              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], { include_blank: "個数を選択" }, { class: "form-control form-custom mt-5" } %>
               <%= f.submit 'カートに入れる', class: 'btn btn-success mt-5 ml-3' %>
             </div>
           </div>

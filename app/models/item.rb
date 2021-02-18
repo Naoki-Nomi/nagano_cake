@@ -8,6 +8,11 @@ class Item < ApplicationRecord
 
   enum is_active: {販売中: true, 販売停止中: false}
 
+
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+
   def self.search(search)
     search ? where('genre_id LIKE ?', "%#{search}%") : all
   end
