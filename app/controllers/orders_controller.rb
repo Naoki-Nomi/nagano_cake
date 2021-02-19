@@ -47,7 +47,9 @@ class OrdersController < ApplicationController
       session[:payment_method] = @order.payment_method
       session[:customer_id] = @customer.id
       session[:status] = 0
-
+      session[:postal_code] = params[:order][:delivery_postal_code]
+      session[:address] = params[:order][:delivery_address]
+      session[:name] = params[:order][:delivery_name]
     end
 
     render :confirm
@@ -56,6 +58,17 @@ class OrdersController < ApplicationController
 
   def create
     @cart_items = current_customer.cart_items.all
+
+    if session[:postal_code]
+      @address = Address.new
+      @address = Address.create(
+        postal_code: session[:postal_code],
+        address: session[:address],
+        name: session[:name],
+        customer_id: session[:customer_id]
+        )
+      @address.save
+    end
 
     @order = Order.create(
       delivery_postal_code: session[:delivery_postal_code],
@@ -103,6 +116,10 @@ class OrdersController < ApplicationController
 
   def order_item_params
     params.permit(:item_id, :amount, :price)
+  end
+
+  def address_params
+    params.require(:address).permit(:name, :postal_code, :address)
   end
 
 end

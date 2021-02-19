@@ -6,6 +6,7 @@
       <div class="row">
         <div class="text-center bg-light col-lg-5 offset-1 mb-4 page-title">会員の方はこちらからログイン</div>
       </div>
+        <div class="text-danger font-weight-bold mb-3 offset-1"><%= flash[:none] %></div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %></div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %></div>
         <div class="text-danger font-weight-bold mb-3 offset-1"><%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %></div>

@@ -6,6 +6,10 @@ class ChangeColumnToNull < ActiveRecord::Migration[5.2]
     change_column_null :cart_items, :item_id,:integer, null: true
     change_column_null :cart_items, :customer_id,:integer, null: true
     change_column_null :cart_items, :amount,:integer, null: true
+    change_column_null :addresses, :address,:string, null: true
+    change_column_null :addresses, :postal_code,:string, null: true
+    change_column_null :addresses, :name,:string, null: true
+    change_column_null :addresses, :customer_id,:integer, null: true
   end
 
   def down
@@ -14,5 +18,9 @@ class ChangeColumnToNull < ActiveRecord::Migration[5.2]
     change_column_null :cart_items, :item_id,:integer, null: false
     change_column_null :cart_items, :customer_id,:integer, null: false
     change_column_null :cart_items, :amount,:integer, null: false
+    change_column_null :addresses, :address,:string, null: false
+    change_column_null :addresses, :postal_code,:string, null: false
+    change_column_null :addresses, :name,:string, null: false
+    change_column_null :addresses, :customer_id,:integer, null: false
   end
 end

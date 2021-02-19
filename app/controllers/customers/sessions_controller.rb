@@ -7,7 +7,7 @@ class Customers::SessionsController < Devise::SessionsController
     @customer = Customer.find_by(email: params[:customer][:email])
     if @customer
       if @customer.is_deleted == "退会済み"
-        flash[:error] = "退会済みです。"
+        flash[:none] = "退会済みです。"
         redirect_to new_customer_session_path
       end
     end

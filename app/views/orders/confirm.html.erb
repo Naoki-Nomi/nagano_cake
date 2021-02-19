@@ -12,18 +12,18 @@
               <th class="table-active", style="width:18%">小計</th>
             </tr>
           </thead>
-          <% @cart_items.each do |cart_item| %>
           <tbody>
+          <% @cart_items.each do |cart_item| %>
             <tr>
-              <td><%= attachment_image_tag cart_item.item.image, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %>
+              <td><%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %>
                   <span class="ml-3 font-weight-bold"><%= cart_item.item.name %></span>
               </td>
               <td><%= cart_item.tax_price %></td>
               <td><%= cart_item.amount %></td>
               <td><%= cart_item.total_price %></td>
             </tr>
-          </tbody>
           <% end %>
+          </tbody>
         </table>
         <table class="col-lg-4 offset-1 table table-bordered confirm-table">
           <tbody>

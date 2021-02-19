@@ -40,6 +40,13 @@
             <h5 class="card-name"><%= link_to item.name, item_path(item.id), class: "text-dark" %></h5>
             <h5 class="genre-name"><%= item.genre.name %></h5>
             <h5 class="card-price">¥<%= item.price.to_s(:delimited, delimiter: ',') %></h5>
+            <% if item.is_active == '販売中'
+                css_class = "text-success"
+               else
+                css_class = "text-muted"
+               end
+            %>
+            <h5 class="<%= css_class %> small"><%= item.is_active %></h5>
           </div>
         </div>
         </div>
